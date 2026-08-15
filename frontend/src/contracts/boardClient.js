@@ -9,7 +9,9 @@ class BaseClient {
   }
 
   async _buildAndSimulate(method, args, sourceAddress) {
-    const account = await server.getAccount(sourceAddress);
+    // Default active testnet address for unauthenticated view queries
+    const fallback = 'GBX6KXN57LQL7KUVGBFHTV7C7EIT7G6MYD375L35R2J7AIVFDR2I2IYY';
+    const account = await server.getAccount(sourceAddress || fallback);
     const tx = new TransactionBuilder(account, { fee: BASE_FEE, networkPassphrase: NETWORK.networkPassphrase })
       .addOperation(this.contract.call(method, ...args))
       .setTimeout(60)

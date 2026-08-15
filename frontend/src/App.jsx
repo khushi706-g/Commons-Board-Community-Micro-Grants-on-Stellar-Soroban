@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import PostBountyForm from './components/PostBountyForm';
@@ -21,6 +21,8 @@ export default function App() {
   const [bounty, setBounty] = useState(null);
   const [currentBountyId, setCurrentBountyId] = useState(null);
   const [profile, setProfile] = useState(null);
+  const [allBounties, setAllBounties] = useState([]);
+  const [loadingAllBounties, setLoadingAllBounties] = useState(false);
   const [loadingBounty, setLoadingBounty] = useState(false);
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
@@ -40,6 +42,30 @@ export default function App() {
       setBounty(null);
     } finally {
       setLoadingBounty(false);
+    }
+  }
+
+  useEffect(() => {
+    if (view === 'board' && wallet.isConnected) {
+      loadAllBounties();
+    }
+  }, [view, wallet.isConnected]);
+
+  async function loadAllBounties() {
+    setLoadingAllBounties(true);
+    try {
+      let bounties = [];
+      for (let i = 0; i < 20; i++) {
+        try {
+          const b = await boardClient.getBounty(i, wallet.address);
+          bounties.push({ id: i, ...b });
+        } catch (e) {
+          break; // Stop at first missing bounty
+        }
+      }
+      setAllBounties(bounties.reverse());
+    } finally {
+      setLoadingAllBounties(false);
     }
   }
 
@@ -136,16 +162,45 @@ export default function App() {
             {view === 'board' && (
               <>
                 <BountyLookup onLookup={handleLookup} loading={loadingBounty} />
+                
                 {loadingBounty ? (
                   <Skeleton />
                 ) : (
-                  <BountyCard
-                    bounty={bounty}
-                    currentAddress={wallet.address}
-                    onAction={handleAction}
-                    actionLoading={actionLoading}
-                    tilt={-1.5}
-                  />
+                  bounty && (
+                    <BountyCard
+                      bounty={bounty}
+                      currentAddress={wallet.address}
+                      onAction={handleAction}
+                      actionLoading={actionLoading}
+                      tilt={-1.5}
+                    />
+                  )
+                )}
+
+                {!bounty && wallet.isConnected && (
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-hand font-bold border-b-2 border-corkdark/10 pb-2">Recent Bounties</h3>
+                    {loadingAllBounties ? (
+                      <Skeleton />
+                    ) : allBounties.length > 0 ? (
+                      allBounties.map(b => (
+                        <div key={b.id} onClick={() => handleLookup(b.id)} className="cursor-pointer transition-transform hover:-translate-y-1">
+                          <BountyCard
+                            bounty={b}
+                            currentAddress={wallet.address}
+                            onAction={handleAction}
+                            actionLoading={actionLoading}
+                            tilt={0}
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-card/50 italic font-mono">No bounties found.</p>
+                    )}
+                  </div>
+                )}
+                {!bounty && !wallet.isConnected && (
+                  <p className="text-card/50 text-center italic mt-8 font-mono">Connect your wallet to browse active bounties.</p>
                 )}
               </>
             )}
