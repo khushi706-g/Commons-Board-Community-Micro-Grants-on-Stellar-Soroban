@@ -60,7 +60,14 @@ export default function App() {
         CONTRACTS.CONTRIBUTOR_CONTRACT_ID,
         wallet.signTransaction
       );
-      setSuccess(`Bounty pinned and funded. Transaction: ${hash}`);
+      setSuccess(
+        <span>
+          Bounty pinned and funded with <strong>{rewardAmount} XLM</strong>. Transaction:{' '}
+          <a href={`https://stellar.expert/explorer/testnet/tx/${hash}`} target="_blank" rel="noreferrer" className="underline hover:opacity-80">
+            {hash.slice(0, 8)}…
+          </a>
+        </span>
+      );
       setView('board');
     } catch (err) {
       setError(`Failed to post bounty: ${err.message}`);
@@ -85,7 +92,14 @@ export default function App() {
       } else if (action === 'cancel') {
         result = await boardClient.cancelBounty(currentBountyId, wallet.address, wallet.signTransaction);
       }
-      setSuccess(`Action confirmed on-chain. Transaction: ${result.hash}`);
+      setSuccess(
+        <span>
+          Action confirmed on-chain. Transaction:{' '}
+          <a href={`https://stellar.expert/explorer/testnet/tx/${result.hash}`} target="_blank" rel="noreferrer" className="underline hover:opacity-80">
+            {result.hash.slice(0, 8)}…
+          </a>
+        </span>
+      );
       await handleLookup(currentBountyId);
     } catch (err) {
       setError(`Action failed: ${err.message}`);

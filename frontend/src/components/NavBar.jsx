@@ -39,9 +39,16 @@ export default function NavBar({ wallet, view, onViewChange }) {
         </nav>
 
         {wallet.isConnected ? (
-          <button onClick={wallet.disconnect} className="btn-secondary text-sm font-mono !text-card !border-card/40">
-            {truncate(wallet.address)}
-          </button>
+          <div className="flex items-center gap-3">
+            {wallet.balance && (
+              <span className="text-sm font-mono text-pin-yellow border border-pin-yellow/30 bg-pin-yellow/10 rounded-card px-2 py-1">
+                {wallet.balance} XLM
+              </span>
+            )}
+            <button onClick={wallet.disconnect} className="btn-secondary text-sm font-mono !text-card !border-card/40">
+              {truncate(wallet.address)}
+            </button>
+          </div>
         ) : (
           <button onClick={wallet.connect} disabled={wallet.connecting} className="btn-primary text-sm">
             {wallet.connecting ? 'Connecting…' : 'Connect wallet'}

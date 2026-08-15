@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { StellarWalletsKit, WalletNetwork, allowAllModules } from '@creit.tech/stellar-wallets-kit';
+import { Horizon } from '@stellar/stellar-sdk';
 import { NETWORK } from '../contracts/config';
 
 let kitInstance = null;
@@ -10,8 +11,11 @@ function getKit() {
   return kitInstance;
 }
 
+const server = new Horizon.Server('https://horizon-testnet.stellar.org');
+
 export function useWallet() {
   const [address, setAddress] = useState(null);
+  const [balance, setBalance] = useState(null);
   const [connecting, setConnecting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -19,6 +23,27 @@ export function useWallet() {
     const saved = localStorage.getItem('commonsboard:lastAddress');
     if (saved) setAddress(saved);
   }, []);
+
+  const fetchBalance = useCallback(async (addr) => {
+    if (!addr) return;
+    try {
+      const account = await server.loadAccount(addr);
+      const native = account.balances.find((b) => b.asset_type === 'native');
+      if (native) {
+        setBalance(parseFloat(native.balance).toFixed(2));
+      }
+    } catch (err) {
+      console.error("Could not fetch balance:", err);
+    }
+  }, []);
+
+  // Poll balance
+  useEffect(() => {
+    if (!address) return;
+    fetchBalance(address);
+    const interval = setInterval(() => fetchBalance(address), 10000); // 10s poll
+    return () => clearInterval(interval);
+  }, [address, fetchBalance]);
 
   const connect = useCallback(async () => {
     setConnecting(true);
@@ -31,6 +56,7 @@ export function useWallet() {
           const { address: addr } = await kit.getAddress();
           setAddress(addr);
           localStorage.setItem('commonsboard:lastAddress', addr);
+          await fetchBalance(addr);
         },
       });
     } catch (err) {
@@ -38,10 +64,11 @@ export function useWallet() {
     } finally {
       setConnecting(false);
     }
-  }, []);
+  }, [fetchBalance]);
 
   const disconnect = useCallback(() => {
     setAddress(null);
+    setBalance(null);
     localStorage.removeItem('commonsboard:lastAddress');
   }, []);
 
@@ -51,5 +78,5 @@ export function useWallet() {
     return signedTxXdr;
   }, [address]);
 
-  return { address, connecting, error, connect, disconnect, signTransaction, isConnected: !!address };
+  return { address, balance, connecting, error, connect, disconnect, signTransaction, isConnected: !!address };
 }
