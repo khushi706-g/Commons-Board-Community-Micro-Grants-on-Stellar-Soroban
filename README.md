@@ -11,6 +11,8 @@
 
 ### 🔗 [▶️ Live App](https://commons-board-community-micro-grant.vercel.app/)
 
+![Commons Board Homepage](images/homePage.png)
+
 </div>
 
 <br />
