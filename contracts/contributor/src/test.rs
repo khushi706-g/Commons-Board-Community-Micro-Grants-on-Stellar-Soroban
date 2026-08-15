@@ -7,7 +7,7 @@ use soroban_sdk::Env;
 fn setup() -> (Env, ContributorRegistryContractClient<'static>, Address) {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(ContributorRegistryContract, ());
+    let contract_id = env.register_contract(None, ContributorRegistryContract);
     let client = ContributorRegistryContractClient::new(&env, &contract_id);
     let board = Address::generate(&env);
     client.initialize(&board);

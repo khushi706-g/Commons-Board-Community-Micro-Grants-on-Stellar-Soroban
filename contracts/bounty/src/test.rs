@@ -21,7 +21,7 @@ fn setup_bounty(
     reward: i128,
 ) -> (BountyBoardContractClient<'static>, u64, Address, token::Client<'static>, Address) {
     env.mock_all_auths();
-    let contract_id = env.register(BountyBoardContract, ());
+    let contract_id = env.register_contract(None, BountyBoardContract);
     let client = BountyBoardContractClient::new(env, &contract_id);
 
     let poster = Address::generate(env);
@@ -29,7 +29,7 @@ fn setup_bounty(
     let (token_addr, admin_client, token_client) = create_token(env, &token_admin);
     admin_client.mint(&poster, &10_000i128);
 
-    let registry_id = env.register(contributor_test_shim::ContributorRegistryContract, ());
+    let registry_id = env.register_contract(None, contributor_test_shim::ContributorRegistryContract);
     contributor_test_shim::ContributorRegistryContractClient::new(env, &registry_id).initialize(&contract_id);
 
     let bounty_id = client.post_bounty(
@@ -109,7 +109,7 @@ fn test_cancel_bounty_refunds_poster() {
 fn test_bounty_not_found_errors() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(BountyBoardContract, ());
+    let contract_id = env.register_contract(None, BountyBoardContract);
     let client = BountyBoardContractClient::new(&env, &contract_id);
     let result = client.try_get_bounty(&999u64);
     assert!(result.is_err());
