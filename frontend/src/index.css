@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #8A5A3B;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.14) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+  ::selection { background: rgba(232, 185, 59, 0.4); }
+  *:focus-visible { outline: 2px solid #E8B93B; outline-offset: 2px; }
+}
+
+@layer components {
+  .index-card {
+    @apply bg-card border border-cardline rounded-card shadow-pinned relative;
+  }
+  .pin-dot {
+    @apply absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full shadow-md;
+  }
+  .btn-primary {
+    @apply bg-ink text-card font-semibold rounded-card px-4 py-2.5 transition-all hover:brightness-125 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-cardline text-ink font-medium rounded-card px-4 py-2.5 transition-colors hover:border-ink/50 disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wide px-2.5 py-1 rounded-full border;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
