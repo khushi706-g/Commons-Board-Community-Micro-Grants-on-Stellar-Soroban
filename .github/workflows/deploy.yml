@@ -1,6 +1,8 @@
 name: Deploy Contracts to Testnet
 
 on:
+  push:
+    branches: [master]
   workflow_dispatch:
 
 env:
@@ -39,7 +41,8 @@ jobs:
       # 3. Build using standard cargo to avoid 'wasm32v1-none' errors, then manually optimize
       - name: Build contracts
         run: |
-          cargo build --target wasm32-unknown-unknown --release
+          cargo build --target wasm32-unknown-unknown --release -p contributor-registry
+          cargo build --target wasm32-unknown-unknown --release -p bounty-board
           stellar contract optimize --wasm target/wasm32-unknown-unknown/release/contributor_registry.wasm
           stellar contract optimize --wasm target/wasm32-unknown-unknown/release/bounty_board.wasm
 

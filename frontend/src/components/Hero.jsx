@@ -10,7 +10,7 @@ export default function Hero() {
           <span className="block text-pin-yellow">Public record.</span>
         </h1>
         <p className="text-card/70 mt-4 text-base sm:text-lg leading-relaxed font-body">
-          Anyone can pin a funded bounty to the board. Anyone can pick it up. When it's done,
+          Anyone can pin a funded bounty to the board. Anyone can pick it up. When it&apos;s done,
           the reward pays out and it becomes part of your public, on-chain contributor record.
         </p>
       </div>

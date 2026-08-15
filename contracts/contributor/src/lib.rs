@@ -10,7 +10,7 @@
 
 #![no_std]
 
-use soroban_sdk::{contract, contracterror, contractevent, contractimpl, contracttype, Address, Env, Vec};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, Vec};
 
 #[contracttype]
 #[derive(Clone)]
@@ -43,14 +43,6 @@ pub enum ContributorError {
     AlreadyInitialized = 2,
 }
 
-#[contractevent]
-#[derive(Clone, Debug)]
-pub struct ContributionLogged {
-    #[topic]
-    pub contributor: Address,
-    pub bounty_id: u64,
-    pub new_score: u32,
-}
 
 #[contract]
 pub struct ContributorRegistryContract;
@@ -62,7 +54,6 @@ impl ContributorRegistryContract {
         if env.storage().instance().has(&DataKey::AuthorizedBoard) {
             return Err(ContributorError::AlreadyInitialized);
         }
-        board.require_auth();
         env.storage().instance().set(&DataKey::AuthorizedBoard, &board);
         Ok(())
     }
@@ -106,7 +97,10 @@ impl ContributorRegistryContract {
         history.push_back(CompletionRecord { bounty_id, reward_amount, ledger_timestamp: env.ledger().timestamp() });
         env.storage().persistent().set(&history_key, &history);
 
-        ContributionLogged { contributor, bounty_id, new_score: profile.score }.publish(&env);
+        env.events().publish(
+            (soroban_sdk::Symbol::new(&env, "ContributionLogged"), contributor.clone()),
+            (bounty_id, profile.score)
+        );
         Ok(profile.score)
     }
 

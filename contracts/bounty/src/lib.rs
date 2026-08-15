@@ -9,11 +9,11 @@
 
 #![no_std]
 
-use soroban_sdk::{contract, contracterror, contractevent, contractimpl, contracttype, token, Address, Env, String, Vec};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, token, Address, Env, String, Vec};
 
 mod contributor {
     soroban_sdk::contractimport!(
-        file = "../contributor/target/wasm32-unknown-unknown/release/contributor_registry.wasm"
+        file = "../../target/wasm32-unknown-unknown/release/contributor_registry.wasm"
     );
 }
 
@@ -64,38 +64,6 @@ pub enum BoardError {
     AlreadySubmitted = 5,
 }
 
-#[contractevent]
-#[derive(Clone, Debug)]
-pub struct BountyPosted {
-    #[topic]
-    pub bounty_id: u64,
-    pub poster: Address,
-    pub reward_amount: i128,
-}
-
-#[contractevent]
-#[derive(Clone, Debug)]
-pub struct SubmissionMade {
-    #[topic]
-    pub bounty_id: u64,
-    pub contributor: Address,
-}
-
-#[contractevent]
-#[derive(Clone, Debug)]
-pub struct BountyPaid {
-    #[topic]
-    pub bounty_id: u64,
-    pub winner: Address,
-    pub reward_amount: i128,
-}
-
-#[contractevent]
-#[derive(Clone, Debug)]
-pub struct BountyCancelled {
-    #[topic]
-    pub bounty_id: u64,
-}
 
 #[contract]
 pub struct BountyBoardContract;
@@ -133,7 +101,10 @@ impl BountyBoardContract {
         };
         env.storage().persistent().set(&DataKey::Bounty(bounty_id), &bounty);
 
-        BountyPosted { bounty_id, poster, reward_amount }.publish(&env);
+        env.events().publish(
+            (soroban_sdk::Symbol::new(&env, "BountyPosted"), bounty_id),
+            (poster.clone(), reward_amount)
+        );
         Ok(bounty_id)
     }
 
@@ -155,7 +126,10 @@ impl BountyBoardContract {
         bounty.status = BountyStatus::InReview;
         env.storage().persistent().set(&DataKey::Bounty(bounty_id), &bounty);
 
-        SubmissionMade { bounty_id, contributor }.publish(&env);
+        env.events().publish(
+            (soroban_sdk::Symbol::new(&env, "SubmissionMade"), bounty_id),
+            contributor.clone()
+        );
         Ok(())
     }
 
@@ -190,7 +164,10 @@ impl BountyBoardContract {
         bounty.winner = Some(winner.clone());
         env.storage().persistent().set(&DataKey::Bounty(bounty_id), &bounty);
 
-        BountyPaid { bounty_id, winner, reward_amount: bounty.reward_amount }.publish(&env);
+        env.events().publish(
+            (soroban_sdk::Symbol::new(&env, "BountyPaid"), bounty_id),
+            (winner.clone(), bounty.reward_amount)
+        );
         Ok(())
     }
 
@@ -209,7 +186,10 @@ impl BountyBoardContract {
         bounty.status = BountyStatus::Cancelled;
         env.storage().persistent().set(&DataKey::Bounty(bounty_id), &bounty);
 
-        BountyCancelled { bounty_id }.publish(&env);
+        env.events().publish(
+            (soroban_sdk::Symbol::new(&env, "BountyCancelled"), bounty_id),
+            ()
+        );
         Ok(())
     }
 
