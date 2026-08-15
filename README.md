@@ -26,28 +26,6 @@
 
 ---
 
-## 🎮 Walkthrough (Demo Scenario)
-
-Here is a full example of how the app works from end to end:
-
-1. **Posting a Bounty (The Sponsor)**
-   - Alice has an open source repo and wants someone to write a setup guide.
-   - She clicks **"Post a Bounty"** and sets a reward of `500 XLM`.
-   - When she submits the transaction, her `500 XLM` is transferred into the smart contract's escrow immediately. The bounty is now live on the public corkboard.
-
-2. **Submitting Work (The Contributor)**
-   - Bob browses the board, sees the bounty, and writes the setup guide.
-   - He clicks **"Submit Work"** and provides a link to his merged PR.
-   - The bounty's status changes to `In Review`.
-
-3. **Approving & Reputation (Cross-Contract Logic)**
-   - Alice reviews Bob's PR and likes it. She clicks **"Approve & Pay"**.
-   - **Under the hood:** The `BountyBoard` contract instantly releases the `500 XLM` from escrow into Bob's wallet. 
-   - It then makes a **cross-contract call** to the `ContributorRegistry` to log the completion.
-   - Bob's on-chain profile is updated: his total earned increases by `500 XLM`, bounties completed increases by `1`, and his reputation score goes up by `+3` (because it's a high-tier reward). Anyone can view Bob's profile on the registry to verify his track record!
-
----
-
 ## 🚀 Smart Contract Deployment (Stellar Testnet)
 
 The smart contracts are live and deployed to the **Stellar Testnet** via automated CI/CD (GitHub Actions).
