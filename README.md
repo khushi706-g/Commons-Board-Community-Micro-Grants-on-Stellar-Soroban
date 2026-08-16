@@ -21,6 +21,21 @@
 
 <br />
 
+## ✅ Submission Checklist
+
+- [x] **Public GitHub repository**: You are here!
+- [x] **README with complete documentation**: See architecture and instructions below.
+- [x] **Minimum 10+ meaningful commits**: See [commit history](https://github.com/khushi706-g/Commons-Board-Community-Micro-Grants-on-Stellar-Soroban/commits).
+- [x] **Live demo link (Vercel)**: Linked at the top of this README.
+- [x] **Contract deployment address**: See [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section.
+- [x] **Transaction hash**: Provided in the [Links](#-links) section above.
+- [x] **Screenshot showing Mobile responsive UI**: See [Platform Gallery](#-platform-gallery).
+- [x] **Screenshot showing CI/CD pipeline running**: See [Platform Gallery](#-platform-gallery).
+- [x] **Screenshot showing Test output with 3+ passing tests**: See [Platform Gallery](#-platform-gallery).
+- [x] **Demo video link (1–2 minutes)**: Linked in the [Links](#-links) section above.
+
+---
+
 ## 🌟 Key Features
 
 1. **Upfront Escrow:** The reward is escrowed the moment the bounty is posted, not just promised — contributors know the money is already there before doing any work.
