@@ -13,8 +13,6 @@
 - **Live App**: [commons-board-community-micro-grant.vercel.app](https://commons-board-community-micro-grant.vercel.app/)
 - **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1q1G3JvicsdyH0mcXVHun-QAfGFCMxoQy/view?usp=sharing)
 
-![Commons Board Homepage](images/homepage.png)
-
 </div>
 
 <br />
@@ -34,20 +32,6 @@ The smart contracts are live and deployed to the **Stellar Testnet** via automat
 
 ---
 
-## ✅ Submission Checklist
-
-- [x] **Public GitHub repository**: You are here!
-- [x] **README with complete documentation**: See architecture and instructions below.
-- [x] **Minimum 10+ meaningful commits**: See [commit history](https://github.com/khushi706-g/Commons-Board-Community-Micro-Grants-on-Stellar-Soroban/commits).
-- [x] **Live demo link (Vercel)**: Linked at the top of this README.
-- [x] **Contract deployment address**: See [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section above.
-- [x] **Transaction hash**: Provided in the [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section above.
-- [x] **Screenshot showing Mobile responsive UI**: See [Platform Gallery](#-platform-gallery).
-- [x] **Screenshot showing CI/CD pipeline running**: See [Platform Gallery](#-platform-gallery).
-- [x] **Screenshot showing Test output with 3+ passing tests**: See [Platform Gallery](#-platform-gallery).
-- [x] **Demo video link (1–2 minutes)**: Linked in the [Links](#-links) section above.
-
----
 
 ## 🌟 Key Features
 
@@ -170,6 +154,21 @@ chmod +x scripts/deploy.sh
 ./scripts/deploy.sh
 ```
 This builds both contracts, deploys them to Stellar Testnet, and links them securely.
+
+---
+
+## ✅ Submission Checklist
+
+- [x] **Public GitHub repository**: You are here!
+- [x] **README with complete documentation**: See architecture and instructions above.
+- [x] **Minimum 10+ meaningful commits**: See [commit history](https://github.com/khushi706-g/Commons-Board-Community-Micro-Grants-on-Stellar-Soroban/commits).
+- [x] **Live demo link (Vercel)**: Linked at the top of this README.
+- [x] **Contract deployment address**: See [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section.
+- [x] **Transaction hash**: Provided in the [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section.
+- [x] **Screenshot showing Mobile responsive UI**: See [Platform Gallery](#-platform-gallery).
+- [x] **Screenshot showing CI/CD pipeline running**: See [Platform Gallery](#-platform-gallery).
+- [x] **Screenshot showing Test output with 3+ passing tests**: See [Platform Gallery](#-platform-gallery).
+- [x] **Demo video link (1–2 minutes)**: Linked in the [Links](#-links) section at the top.
 
 ---
 
