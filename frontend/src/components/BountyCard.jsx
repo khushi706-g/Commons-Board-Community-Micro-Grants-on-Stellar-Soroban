@@ -32,17 +32,20 @@ export default function BountyCard({ bounty, currentAddress, onAction, actionLoa
     );
   }
 
-  const isPoster = currentAddress === bounty.poster;
-  const alreadySubmitted = bounty.submissions?.some((s) => s.contributor === currentAddress);
-  const canSubmit = bounty.status === 'Open' || bounty.status === 'InReview';
+  const posterAddr = String(bounty.poster);
+  const currentStatus = String(bounty.status);
+  
+  const isPoster = currentAddress === posterAddr;
+  const alreadySubmitted = bounty.submissions?.some((s) => String(s.contributor) === currentAddress);
+  const canSubmit = currentStatus === 'Open' || currentStatus === 'InReview';
 
   return (
     <div className="index-card p-5 sm:p-6 max-w-md mx-auto" style={{ transform: `rotate(${tilt}deg)` }}>
-      <span className={`pin-dot ${STATUS_PIN[bounty.status] || STATUS_PIN.Open} border-2 border-corkdark`} />
+      <span className={`pin-dot ${STATUS_PIN[currentStatus] || STATUS_PIN.Open} border-2 border-corkdark`} />
 
       <div className="flex items-start justify-between gap-3 mb-2">
         <h3 className="font-display text-xl text-ink leading-snug">{bounty.title}</h3>
-        <span className="pill border-ink/20 text-ink/60 shrink-0">{STATUS_LABEL[bounty.status] || bounty.status}</span>
+        <span className="pill border-ink/20 text-ink/60 shrink-0">{STATUS_LABEL[currentStatus] || currentStatus}</span>
       </div>
 
       <p className="text-sm text-ink/70 leading-relaxed">{bounty.description}</p>
@@ -60,13 +63,13 @@ export default function BountyCard({ bounty, currentAddress, onAction, actionLoa
         <div className="mt-4 space-y-2">
           {bounty.submissions.map((s, i) => (
             <div key={i} className="text-xs bg-card border border-cardline rounded px-3 py-2">
-              <p className="font-mono text-ink/50 truncate">{s.contributor}</p>
+              <p className="font-mono text-ink/50 truncate">{String(s.contributor)}</p>
               <p className="text-ink/80 mt-0.5">{s.note}</p>
-              {isPoster && bounty.status === 'InReview' && (
+              {isPoster && currentStatus === 'InReview' && (
                 <button
                   className="btn-primary text-xs py-1.5 px-3 mt-2"
                   disabled={actionLoading}
-                  onClick={() => onAction('approve', s.contributor)}
+                  onClick={() => onAction('approve', String(s.contributor))}
                 >
                   Approve &amp; pay out
                 </button>
@@ -104,7 +107,7 @@ export default function BountyCard({ bounty, currentAddress, onAction, actionLoa
             </button>
           </div>
         )}
-        {isPoster && bounty.status === 'Open' && (
+        {isPoster && currentStatus === 'Open' && (
           <button
             className="btn-secondary text-xs py-2 !border-pin-pink/40 !text-pin-pink"
             disabled={actionLoading}
