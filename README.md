@@ -27,8 +27,8 @@ The smart contracts are live and deployed to the **Stellar Testnet** via automat
 | 🏅 **ContributorRegistry** | `CAE2C2UQBDDM4E65SMQ6C7ZWDYRDODBQ4PI5JYV2IBC7TYRRVQ6V63SI` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CAE2C2UQBDDM4E65SMQ6C7ZWDYRDODBQ4PI5JYV2IBC7TYRRVQ6V63SI) |
 
 ### Example Transactions
-- **Post Bounty**: [`a3b7...c8b`](https://stellar.expert/explorer/testnet/tx/a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b)
-- **Approve & Payout**: [`812a...f5b`](https://stellar.expert/explorer/testnet/tx/812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b)
+- **Post Bounty**: [`a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b`](https://stellar.expert/explorer/testnet/tx/a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b)
+- **Approve & Payout**: [`812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b`](https://stellar.expert/explorer/testnet/tx/812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b)
 
 ---
 
@@ -170,8 +170,3 @@ This builds both contracts, deploys them to Stellar Testnet, and links them secu
 - [x] **Screenshot showing Test output with 3+ passing tests**: See [Platform Gallery](#-platform-gallery).
 - [x] **Demo video link (1–2 minutes)**: Linked in the [Links](#-links) section at the top.
 
----
-
-## 📜 License
-
-MIT
