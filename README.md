@@ -15,7 +15,7 @@
 - **Example Tx (Post Bounty)**: [`a3b7...c8b`](https://stellar.expert/explorer/testnet/tx/a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b)
 - **Example Tx (Approve & Payout)**: [`812a...f5b`](https://stellar.expert/explorer/testnet/tx/812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b)
 
-![Commons Board Homepage](images/homePage.png)
+![Commons Board Homepage](images/homepage.png)
 
 </div>
 
@@ -27,6 +27,22 @@
 2. **Independent Reputation Registry:** BountyBoard and ContributorRegistry are separate contracts. The board owns bounty lifecycle, while the registry is an independent, cumulative record of a person's contributions across every bounty they've ever completed.
 3. **Real-time Event Streaming:** Every state change (posted, submitted, paid, cancelled) emits an event, streamed live into the frontend's activity ticker. 
 4. **Reward-Tiered Scoring:** A contributor who does one $500 job and one who does five $50 jobs both build real reputation, just along different signals anyone can inspect.
+
+---
+
+## 📸 Platform Gallery
+
+Here is a look at the platform in action, alongside our automated CI/CD pipeline and test suite:
+
+### Responsive UI & Core Features
+![Commons Board Homepage](images/homepage.png)
+<br/>
+![Mobile Responsive UI](images/mobile%20responsive%20ui.png)
+
+### Automated CI/CD & Testing
+![CI/CD Workflow](images/ci%20cd%20workflow.png)
+<br/>
+![Test Output](images/test%20output.png)
 
 ---
 
