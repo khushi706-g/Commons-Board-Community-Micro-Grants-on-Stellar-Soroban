@@ -19,7 +19,7 @@ describe('PostBountyForm', () => {
     await user.type(screen.getByPlaceholderText('50'), '80');
     await user.click(screen.getByText('Pin to the board'));
 
-    expect(onPost).toHaveBeenCalledWith({ title: 'Write API docs', description: 'Document the new endpoints', rewardAmount: 80 });
+    expect(onPost).toHaveBeenCalledWith({ title: 'Write API docs', description: 'Document the new endpoints', rewardAmount: 800000000 });
   });
 
   it('shows the loading label while submitting', () => {
