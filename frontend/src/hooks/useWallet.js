@@ -19,9 +19,14 @@ export function useWallet() {
   const [connecting, setConnecting] = useState(false);
   const [error, setError] = useState(null);
 
-  // Removed auto-restore from localStorage to ensure users explicitly connect their wallet.
-  // This prevents Freighter from interrupting the first transaction with a "Share public key" prompt.
-
+  useEffect(() => {
+    const savedAddr = localStorage.getItem('commonsboard:lastAddress');
+    const savedWallet = localStorage.getItem('commonsboard:lastWalletId');
+    if (savedAddr && savedWallet) {
+      getKit().setWallet(savedWallet);
+      setAddress(savedAddr);
+    }
+  }, []);
   const fetchBalance = useCallback(async (addr) => {
     if (!addr) return;
     try {
@@ -54,6 +59,7 @@ export function useWallet() {
           const { address: addr } = await kit.getAddress();
           setAddress(addr);
           localStorage.setItem('commonsboard:lastAddress', addr);
+          localStorage.setItem('commonsboard:lastWalletId', option.id);
           await fetchBalance(addr);
         },
       });
@@ -68,6 +74,7 @@ export function useWallet() {
     setAddress(null);
     setBalance(null);
     localStorage.removeItem('commonsboard:lastAddress');
+    localStorage.removeItem('commonsboard:lastWalletId');
   }, []);
 
   const signTransaction = useCallback(async (xdr) => {
