@@ -44,7 +44,10 @@ export default function BountyCard({ bounty, currentAddress, onAction, actionLoa
       <span className={`pin-dot ${STATUS_PIN[currentStatus] || STATUS_PIN.Open} border-2 border-corkdark`} />
 
       <div className="flex items-start justify-between gap-3 mb-2">
-        <h3 className="font-display text-xl text-ink leading-snug">{bounty.title}</h3>
+        <h3 className="font-display text-xl text-ink leading-snug">
+          {bounty.id !== undefined && <span className="text-muted mr-2">#{bounty.id}</span>}
+          {bounty.title}
+        </h3>
         <span className="pill border-ink/20 text-ink/60 shrink-0">{STATUS_LABEL[currentStatus] || currentStatus}</span>
       </div>
 

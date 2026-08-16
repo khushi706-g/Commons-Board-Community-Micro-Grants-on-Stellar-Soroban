@@ -35,7 +35,7 @@ export default function App() {
     setLoadingBounty(true);
     try {
       const result = await boardClient.getBounty(bountyId, wallet.address);
-      setBounty(result);
+      setBounty({ id: bountyId, ...result });
       setCurrentBountyId(bountyId);
     } catch (err) {
       setError(`Could not load bounty #${bountyId}. It may not exist, or contract IDs in config.js need updating. (${err.message})`);
