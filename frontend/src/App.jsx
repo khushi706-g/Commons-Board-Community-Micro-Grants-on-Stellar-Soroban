@@ -88,7 +88,7 @@ export default function App() {
       );
       setSuccess(
         <span>
-          Bounty pinned and funded with <strong>{rewardAmount} XLM</strong>. Transaction:{' '}
+          Bounty pinned and funded with <strong>{rewardAmount / 10000000} XLM</strong>. Transaction:{' '}
           <a href={`https://stellar.expert/explorer/testnet/tx/${hash}`} target="_blank" rel="noreferrer" className="underline hover:opacity-80">
             {hash.slice(0, 8)}…
           </a>
