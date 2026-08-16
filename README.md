@@ -9,7 +9,11 @@
 [![Vite](https://img.shields.io/badge/Frontend-Vite_React-purple.svg)](https://vitejs.dev/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black.svg?logo=vercel)](https://commons-board-community-micro-grant.vercel.app/)
 
-### 🔗 [▶️ Live App](https://commons-board-community-micro-grant.vercel.app/)
+### 🔗 Links
+- **Live App**: [commons-board-community-micro-grant.vercel.app](https://commons-board-community-micro-grant.vercel.app/)
+- **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1niMMGBu9r8U3spyEK3LtgUQoevmrQk_O/view?usp=sharing)
+- **Example Tx (Post Bounty)**: [`a3b7...c8b`](https://stellar.expert/explorer/testnet/tx/a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b)
+- **Example Tx (Approve & Payout)**: [`812a...f5b`](https://stellar.expert/explorer/testnet/tx/812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b)
 
 ![Commons Board Homepage](images/homePage.png)
 
