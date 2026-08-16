@@ -52,7 +52,7 @@ export default function BountyCard({ bounty, currentAddress, onAction, actionLoa
 
       <div className="flex items-center justify-between mt-4 pt-3 border-t border-dashed border-cardline">
         <span className="font-mono text-lg text-ink">
-          {Number(bounty.reward_amount).toLocaleString()} <span className="text-xs text-muted">tokens</span>
+          {(Number(bounty.reward_amount) / 10000000).toLocaleString()} <span className="text-xs text-muted">tokens</span>
         </span>
         <span className="text-xs text-muted font-mono">
           {bounty.submissions?.length || 0} submission{(bounty.submissions?.length || 0) !== 1 ? 's' : ''}

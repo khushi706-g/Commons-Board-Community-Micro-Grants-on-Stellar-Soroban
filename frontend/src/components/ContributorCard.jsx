@@ -30,7 +30,7 @@ export default function ContributorCard({ onLookup, profile, loading }) {
             <p className="text-xs text-muted mt-1">Completed</p>
           </div>
           <div>
-            <p className="text-2xl font-display text-pin-blue">{Number(profile.total_earned).toLocaleString()}</p>
+            <p className="text-2xl font-display text-pin-blue">{(Number(profile.total_earned) / 10000000).toLocaleString()}</p>
             <p className="text-xs text-muted mt-1">Earned</p>
           </div>
         </div>

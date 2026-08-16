@@ -7,7 +7,7 @@ const sampleBounty = {
   poster: 'GPOSTER1111111111111111111111111111111111111111111111',
   title: 'Fix onboarding docs typo',
   description: 'The setup guide has an outdated CLI flag.',
-  reward_amount: 100,
+  reward_amount: 1000000000,
   status: 'InReview',
   submissions: [{ contributor: 'GCONTRIB2222222222222222222222222222222222222222222', note: 'Fixed in PR #42' }],
 };

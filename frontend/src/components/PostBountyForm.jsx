@@ -13,7 +13,8 @@ export default function PostBountyForm({ onPost, loading }) {
       style={{ transform: 'rotate(-1deg)' }}
       onSubmit={(e) => {
         e.preventDefault();
-        onPost({ title, description, rewardAmount: Number(rewardAmount) });
+        // Multiply by 10^7 to convert XLM/Tokens into Stroops (the base unit used by Soroban contracts)
+        onPost({ title, description, rewardAmount: Math.floor(Number(rewardAmount) * 10000000) });
       }}
     >
       <span className="pin-dot bg-pin-yellow border-2 border-corkdark" />
