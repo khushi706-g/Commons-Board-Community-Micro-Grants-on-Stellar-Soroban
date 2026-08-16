@@ -12,8 +12,6 @@
 ### 🔗 Links
 - **Live App**: [commons-board-community-micro-grant.vercel.app](https://commons-board-community-micro-grant.vercel.app/)
 - **Demo Video**: [Watch the Demo](https://drive.google.com/file/d/1q1G3JvicsdyH0mcXVHun-QAfGFCMxoQy/view?usp=sharing)
-- **Example Tx (Post Bounty)**: [`a3b7...c8b`](https://stellar.expert/explorer/testnet/tx/a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b)
-- **Example Tx (Approve & Payout)**: [`812a...f5b`](https://stellar.expert/explorer/testnet/tx/812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b)
 
 ![Commons Board Homepage](images/homepage.png)
 
@@ -21,14 +19,29 @@
 
 <br />
 
+## 🚀 Smart Contract Deployment (Stellar Testnet)
+
+The smart contracts are live and deployed to the **Stellar Testnet** via automated CI/CD (GitHub Actions).
+
+| Contract | Contract ID | Explorer |
+|---|---|---|
+| 📋 **BountyBoard** | `CC3N2CZNWMO7EQNVLJ4FA5MSQ7RQN5NTFENAHUIY5B2PPCFLWNTO2ZA6` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CC3N2CZNWMO7EQNVLJ4FA5MSQ7RQN5NTFENAHUIY5B2PPCFLWNTO2ZA6) |
+| 🏅 **ContributorRegistry** | `CAE2C2UQBDDM4E65SMQ6C7ZWDYRDODBQ4PI5JYV2IBC7TYRRVQ6V63SI` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CAE2C2UQBDDM4E65SMQ6C7ZWDYRDODBQ4PI5JYV2IBC7TYRRVQ6V63SI) |
+
+### Example Transactions
+- **Post Bounty**: [`a3b7...c8b`](https://stellar.expert/explorer/testnet/tx/a3b704e4557111d3e3342e08f71bf15efb272aef139adb60b1bbc569aa9c2c8b)
+- **Approve & Payout**: [`812a...f5b`](https://stellar.expert/explorer/testnet/tx/812a3bf99835d159c2ea25aa35d215a070c614cc2b7a3e1decff08c111f5af5b)
+
+---
+
 ## ✅ Submission Checklist
 
 - [x] **Public GitHub repository**: You are here!
 - [x] **README with complete documentation**: See architecture and instructions below.
 - [x] **Minimum 10+ meaningful commits**: See [commit history](https://github.com/khushi706-g/Commons-Board-Community-Micro-Grants-on-Stellar-Soroban/commits).
 - [x] **Live demo link (Vercel)**: Linked at the top of this README.
-- [x] **Contract deployment address**: See [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section.
-- [x] **Transaction hash**: Provided in the [Links](#-links) section above.
+- [x] **Contract deployment address**: See [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section above.
+- [x] **Transaction hash**: Provided in the [Smart Contract Deployment](#-smart-contract-deployment-stellar-testnet) section above.
 - [x] **Screenshot showing Mobile responsive UI**: See [Platform Gallery](#-platform-gallery).
 - [x] **Screenshot showing CI/CD pipeline running**: See [Platform Gallery](#-platform-gallery).
 - [x] **Screenshot showing Test output with 3+ passing tests**: See [Platform Gallery](#-platform-gallery).
@@ -58,17 +71,6 @@ Here is a look at the platform in action, alongside our automated CI/CD pipeline
 ![CI/CD Workflow](images/ci%20cd%20workflow.png)
 <br/>
 ![Test Output](images/test%20output.png)
-
----
-
-## 🚀 Smart Contract Deployment (Stellar Testnet)
-
-The smart contracts are live and deployed to the **Stellar Testnet** via automated CI/CD (GitHub Actions).
-
-| Contract | Contract ID | Explorer |
-|---|---|---|
-| 📋 **BountyBoard** | `CC3N2CZNWMO7EQNVLJ4FA5MSQ7RQN5NTFENAHUIY5B2PPCFLWNTO2ZA6` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CC3N2CZNWMO7EQNVLJ4FA5MSQ7RQN5NTFENAHUIY5B2PPCFLWNTO2ZA6) |
-| 🏅 **ContributorRegistry** | `CAE2C2UQBDDM4E65SMQ6C7ZWDYRDODBQ4PI5JYV2IBC7TYRRVQ6V63SI` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CAE2C2UQBDDM4E65SMQ6C7ZWDYRDODBQ4PI5JYV2IBC7TYRRVQ6V63SI) |
 
 ---
 
